@@ -1,6 +1,13 @@
 import Jsoning, { JSONValue } from 'jsoning';
 
 /**
+ * Defines the return value of TypedJsoning#all()
+ *
+ * @typedef JsoningReturnAllValue
+ * @type {Object<string, T>}
+ */
+
+/**
  * @class
  * @extends Jsoning
  * @description A typed version of Jsoning
@@ -26,7 +33,6 @@ export class TypedJsoning<T extends JSONValue> extends Jsoning {
 	 * Adds an element to the database with the given value. If element with the given key exists, element value is updated.
 	 *
 	 * @async
-	 * @method set
 	 * @param {string} key Key of the element to be set.
 	 * @param {T} value Value of the element to be set.
 	 * @returns {Promise<boolean>} If element is set/updated successfully, returns `true`; returns `false` otherwise.
@@ -48,7 +54,6 @@ export class TypedJsoning<T extends JSONValue> extends Jsoning {
 	/**
 	 * Returns the value of an element by key.
 	 *
-	 * @method get
 	 * @param {string} key The key of the element to be fetched.
 	 * @returns {T | null} Returns the value, if the element exists; returns `null` otherwise.
 	 * @example
@@ -76,8 +81,7 @@ export class TypedJsoning<T extends JSONValue> extends Jsoning {
 	/**
 	 * Returns all the elements and their values of the JSON file.
 	 *
-	 * @method all
-	 * @returns {{ [key: string]: T }} All the key-value pairs of the database.
+	 * @returns {JsoningReturnAllValue<T>} All the key-value pairs of the database.
 	 * @example
 	 * database.set("foo", "bar");
 	 * database.set("hi", "hello");

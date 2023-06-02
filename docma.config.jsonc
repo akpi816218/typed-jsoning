@@ -1,0 +1,26 @@
+{
+	"app": {
+		"title": "TypedJsoning"
+	},
+	"template": {
+		"navbar": {
+			"enabled": true,
+			"fixed": true,
+			"dark": true,
+			"animations": true,
+			"menu": [
+				{
+					"label": "GitHub",
+					"href": "https://github.com/akpi816218/typed-jsoning"
+				},
+				{
+					"label": "NPM",
+					"href": "https://www.npmjs.com/package/typed-jsoning"
+				}
+			]
+		}
+	},
+	"assets": ["../files/*.*"],
+	"src": ["dist/index.js"],
+	"dest": "docs"
+}
