@@ -1,0 +1,30 @@
+{
+  "name": "typed-jsoning",
+  "version": "1.0.0",
+  "description": "A simple key-value JSON-based persistent lightweight database.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akpi816218/typed-jsoning.git"
+  },
+  "keywords": [
+    "json",
+    "database"
+  ],
+  "author": "Akhil Pillai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akpi816218/typed-jsoning/issues"
+  },
+  "homepage": "https://github.com/akpi816218/typed-jsoning#readme",
+  "dependencies": {
+    "jsoning": "^0.13.23"
+  },
+  "devDependencies": {
+    "docma": "^3.2.2",
+    "typescript": "^5.0.4"
+  }
+}
