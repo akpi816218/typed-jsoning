@@ -1,4 +1,4 @@
-import Jsoning from 'jsoning';
+import Jsoning, { JSONValue } from 'jsoning';
 /**
  * Defines the return value of TypedJsoning#all()
  *
@@ -19,20 +19,19 @@ import Jsoning from 'jsoning';
  * database.math('four', JsoningMathOperands.Divide, 2);
  * // database content is now { "one": 2, "two": 1, "three": 6, "four": 2 }·
  */
-export var JsoningMathOperands;
-(function (JsoningMathOperands) {
-    JsoningMathOperands["Add"] = "add";
-    JsoningMathOperands["Subtract"] = "subtract";
-    JsoningMathOperands["Multiply"] = "multiply";
-    JsoningMathOperands["Divide"] = "divide";
-})(JsoningMathOperands || (JsoningMathOperands = {}));
+export declare enum JsoningMathOperands {
+    Add = "add",
+    Subtract = "subtract",
+    Multiply = "multiply",
+    Divide = "divide"
+}
 /**
  * @class
  * @extends Jsoning
  * @description A typed version of Jsoning
  * @template T The type of the value to be stored in the JSON file.
  */
-export class TypedJsoning extends Jsoning {
+export declare class TypedJsoning<T extends JSONValue> extends Jsoning {
     /**
      * Create a new JSON file for storing or initialize an exisiting file to be used.
      *
@@ -47,9 +46,7 @@ export class TypedJsoning extends Jsoning {
      * // The following line should throw a similar error in TypeScript
      * await db.set('bar', 'two'); // TypeError: Argument of type '"two"' is not assignable to parameter of type 'number'.
      */
-    constructor(path) {
-        super(path);
-    }
+    constructor(path: string);
     /**
      * Returns all the elements and their values of the JSON file.
      *
@@ -60,9 +57,9 @@ export class TypedJsoning extends Jsoning {
      * db.set('hi', 'hello');
      * console.log(db.all()); // { "foo": "bar", "hi": "hello" }
      */
-    all() {
-        return super.all();
-    }
+    all(): {
+        [key: string]: T;
+    };
     /**
      * Clears the database.
      *
@@ -74,9 +71,7 @@ export class TypedJsoning extends Jsoning {
      * db.set('en', 'db');
      * db.clear(); // database file content is now {}
      */
-    async clear() {
-        return await super.clear();
-    }
+    clear(): Promise<boolean>;
     /**
      * Deletes an element from the database based on its key.
      *
@@ -89,9 +84,7 @@ export class TypedJsoning extends Jsoning {
      * database.set('foo', 'bar');
      * database.delete('foo'); // -> true
      */
-    async delete(key) {
-        return await super.delete(key);
-    }
+    delete(key: string): Promise<boolean>;
     /**
      * Returns the value of an element by key.
      *
@@ -102,9 +95,7 @@ export class TypedJsoning extends Jsoning {
      * db.set('food', 'pizza');
      * console.log(db.get('food')); // -> 'pizza'
      */
-    get(key) {
-        return super.get(key);
-    }
+    get(key: string): T | undefined;
     /**
      * Check if a particular element exists by key.
      *
@@ -117,9 +108,7 @@ export class TypedJsoning extends Jsoning {
      * console.log(db.has('a')); // -> true
      * console.log(database.has('otherkey')); // -> false
      */
-    has(key) {
-        return super.has(key);
-    }
+    has(key: string): boolean;
     /**
      * Performs basic mathematical operations on values of elements.
      *
@@ -140,9 +129,7 @@ export class TypedJsoning extends Jsoning {
      * console.log(database.get("value1")); // returns 1+1 = 2
      * console.log(database.get("value2")); // returns 10*5 = 50
      */
-    async math(key, operation, operand) {
-        return await super.math(key, operation, operand);
-    }
+    math(key: string, operation: JsoningMathOperands, operand: number): Promise<boolean>;
     /**
      * Adds the given value into the provided element (if it's an array) in the database based on the key. If no such element exists, it will initialize a new element with an empty array.
      *
@@ -156,9 +143,7 @@ export class TypedJsoning extends Jsoning {
      * database.push('leaderboard', 'user1');
      * database.push('leaderboard', 'user2');
      */
-    async push(key, value) {
-        return await super.push(key, value);
-    }
+    push(key: string, value: JSONValue): Promise<boolean>;
     /**
      *
      * Removes a given primitive value from an array in the database based on the key. If no existing array, it will do nothing.
@@ -173,9 +158,7 @@ export class TypedJsoning extends Jsoning {
      * database.remove("leaderboard", "wh0");
      *
      */
-    async remove(key, value) {
-        return await super.remove(key, value);
-    }
+    remove(key: string, value: JSONValue): Promise<boolean>;
     /**
      * Adds an element to the database with the given value. If element with the given key exists, element value is updated.
      *
@@ -192,8 +175,6 @@ export class TypedJsoning extends Jsoning {
      * db.set('hi', 3); // Error: Argument of type 'number' is not assignable to parameter of type 'string'. Still at { 'en': 'en', 'foo': 'bar' }
      * console.log(await db.set('k', 'v')); // -> true
      */
-    async set(key, value) {
-        return await super.set(key, value);
-    }
+    set(key: string, value: T): Promise<boolean>;
 }
 export default TypedJsoning;

@@ -4,7 +4,7 @@
 	"description": "A simple key-value JSON-based persistent lightweight database.",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "\\rm -drf dist docs ; npx prettier -w . ; npx tsc ; npx docma -c docma.config.jsonc",
+		"build": "\\rm -drf dist docs types ; npx prettier -w . ; npx tsc ; npx docma -c docma.config.jsonc",
 		"docs:build": "npx docma -c docma.config.json",
 		"docs:serve": "npx docma serve docs",
 		"test": "echo \"Error: no test specified\" && exit 1"
