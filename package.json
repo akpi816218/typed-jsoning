@@ -1,8 +1,10 @@
 {
 	"name": "typed-jsoning",
-	"version": "1.0.0",
+	"version": "1.0.3",
 	"description": "A simple key-value JSON-based persistent lightweight database.",
 	"main": "dist/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
 	"scripts": {
 		"build": "\\rm -drf dist docs types ; npx prettier -w . ; npx tsc ; npx docma -c docma.config.jsonc",
 		"docs:build": "npx docma -c docma.config.json",

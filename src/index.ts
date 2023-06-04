@@ -34,7 +34,7 @@ export enum JsoningMathOperands {
  * @description A typed version of Jsoning
  * @template T The type of the value to be stored in the JSON file.
  */
-export class TypedJsoning<T extends JSONValue> extends Jsoning {
+export class TypedJsoning<T> extends Jsoning {
 	/**
 	 * Create a new JSON file for storing or initialize an exisiting file to be used.
 	 *
